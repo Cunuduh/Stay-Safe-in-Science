@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://cqp28kstyeu8p"]
+
+[ext_resource type="Script" path="res://scripts/minigame_2/minigame_2.gd" id="1_tjpnb"]
+[ext_resource type="FontFile" uid="uid://bvw5nemfgqfxq" path="res://CG pixel 4x5.ttf" id="2_c8ntb"]
+[ext_resource type="Texture2D" uid="uid://baf28dj0p5mb" path="res://sprites/eyewash_station.png" id="3_o041b"]
+[ext_resource type="Texture2D" uid="uid://d2jjxvrhqq1qc" path="res://sprites/mask.png" id="4_ctii5"]
+[ext_resource type="Texture2D" uid="uid://c8e7tvbyd5abd" path="res://sprites/erlenmeyer_flask.png" id="4_xk5i7"]
+[ext_resource type="Texture2D" uid="uid://bh7dcgxvdje5g" path="res://sprites/test_tube.png" id="5_swn4x"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ps1gs"]
+font = ExtResource("2_c8ntb")
+font_size = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8adr"]
+size = Vector2(4, 4)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eatck"]
+radius = 24.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_k5bb3"]
+font = ExtResource("2_c8ntb")
+font_size = 5
+
+[node name="Minigame2" type="Node2D"]
+script = ExtResource("1_tjpnb")
+metadata/_edit_lock_ = true
+
+[node name="OneSecondTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 72.0
+offset_top = 74.0
+offset_right = 175.0
+offset_bottom = 106.0
+text = "You are blind. Find the eyewash station in the dark"
+label_settings = SubResource("LabelSettings_ps1gs")
+autowrap_mode = 3
+
+[node name="EyewashStation" type="Sprite2D" parent="." groups=["Sprite2D"]]
+texture = ExtResource("3_o041b")
+
+[node name="Area2D" type="Area2D" parent="EyewashStation"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EyewashStation/Area2D"]
+shape = SubResource("RectangleShape2D_j8adr")
+
+[node name="ErlenmeyerFlask" type="Sprite2D" parent="." groups=["Sprite2D"]]
+texture = ExtResource("4_xk5i7")
+
+[node name="TestTube" type="Sprite2D" parent="." groups=["Sprite2D"]]
+texture = ExtResource("5_swn4x")
+
+[node name="Mask" type="Sprite2D" parent="."]
+texture = ExtResource("4_ctii5")
+
+[node name="Area2D" type="Area2D" parent="Mask"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mask/Area2D"]
+shape = SubResource("CircleShape2D_eatck")
+
+[node name="TimerLabel" type="Label" parent="."]
+offset_right = 10.0
+offset_bottom = 8.0
+text = "10"
+label_settings = SubResource("LabelSettings_k5bb3")
+autowrap_mode = 3
+
+[connection signal="timeout" from="OneSecondTimer" to="." method="_on_one_second_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Mask/Area2D" to="." method="_on_area_2d_area_entered"]

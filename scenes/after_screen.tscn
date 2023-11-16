@@ -1,0 +1,124 @@
+[gd_scene load_steps=14 format=3 uid="uid://dta2hcynfeko1"]
+
+[ext_resource type="Script" path="res://scripts/after_screen/after_screen.gd" id="1_1py2m"]
+[ext_resource type="Texture2D" uid="uid://17pl154lcxwu" path="res://sprites/lives_0.png" id="2_yocgl"]
+[ext_resource type="Texture2D" uid="uid://bq33twso5lyvb" path="res://sprites/lives_1.png" id="3_pkjbu"]
+[ext_resource type="Texture2D" uid="uid://b6tow4xy68m2i" path="res://sprites/lives_2.png" id="4_3cdwv"]
+[ext_resource type="Texture2D" uid="uid://bmorp71vmtng5" path="res://sprites/lives_3.png" id="5_lvv88"]
+[ext_resource type="StyleBox" uid="uid://18wvken6xidf" path="res://resources/button_stylebox.tres" id="6_pu7nh"]
+[ext_resource type="Texture2D" uid="uid://dkx4tqedwjaap" path="res://sprites/blind.png" id="7_30737"]
+[ext_resource type="Texture2D" uid="uid://crfwrlkyw37k1" path="res://sprites/broom.png" id="7_xbkvj"]
+[ext_resource type="Texture2D" uid="uid://651cjpga4kg2" path="res://sprites/burnt.png" id="9_moh63"]
+[ext_resource type="Texture2D" uid="uid://db1eg2a18b5xq" path="res://sprites/dead.png" id="10_paysq"]
+[ext_resource type="Texture2D" uid="uid://c2eeub4wr3b64" path="res://sprites/fire_hair.png" id="11_ce28o"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_opqaa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yocgl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_pkjbu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3cdwv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_lvv88")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ujvc6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_xbkvj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_30737")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_moh63")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_paysq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ce28o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
+
+[node name="AfterScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1py2m")
+
+[node name="Lives" type="AnimatedSprite2D" parent="."]
+position = Vector2(120, 45)
+sprite_frames = SubResource("SpriteFrames_opqaa")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -6.5
+offset_right = 26.0
+offset_bottom = 6.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 5
+theme_override_styles/normal = ExtResource("6_pu7nh")
+theme_override_styles/hover = ExtResource("6_pu7nh")
+theme_override_styles/pressed = ExtResource("6_pu7nh")
+theme_override_styles/disabled = ExtResource("6_pu7nh")
+theme_override_styles/focus = ExtResource("6_pu7nh")
+text = "Continue"
+
+[node name="SafetyTip" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(83, 133)
+sprite_frames = SubResource("SpriteFrames_ujvc6")
+
+[node name="Label" type="Label" parent="SafetyTip"]
+offset_left = 26.0
+offset_top = -25.0
+offset_right = 97.0
+offset_bottom = 27.0
+theme_override_font_sizes/font_size = 5
+text = "Don't be the guy who has to clean up/call the custodian!"
+autowrap_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="WinCounter" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.5
+offset_top = -25.0
+offset_right = 12.5
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 5
+text = "0 Wins"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

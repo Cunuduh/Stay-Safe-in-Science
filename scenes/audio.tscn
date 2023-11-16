@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1x8w54w628qx"]
+
+[ext_resource type="AudioStream" uid="uid://cvkxvi8w1t8qx" path="res://sounds/shatter.wav" id="1_cqm5q"]
+[ext_resource type="AudioStream" uid="uid://cgr6o8sfe47ci" path="res://sounds/1192448_Isolation---Nighthawk22-Ch.mp3" id="2_0x0e8"]
+
+[node name="Audio" type="Node"]
+
+[node name="Shatter" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_cqm5q")
+
+[node name="Isolation" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0x0e8")
+volume_db = -10.0
+autoplay = true

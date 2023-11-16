@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://ded1c6lg3f4ew"]
+
+[ext_resource type="Script" path="res://scripts/minigame_5/minigame_5.gd" id="1_8kg8y"]
+[ext_resource type="Texture2D" uid="uid://ct7l6uil16vkk" path="res://sprites/long_hair.png" id="1_ymol2"]
+[ext_resource type="Texture2D" uid="uid://o8jb3mlvx44c" path="res://sprites/bun.png" id="2_wuepr"]
+[ext_resource type="FontFile" uid="uid://bvw5nemfgqfxq" path="res://CG pixel 4x5.ttf" id="4_ac03i"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ximga"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ymol2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_wuepr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6a7ns"]
+font = ExtResource("4_ac03i")
+font_size = 5
+
+[node name="Minigame5" type="Node2D"]
+script = ExtResource("1_8kg8y")
+metadata/_edit_lock_ = true
+
+[node name="Person" type="AnimatedSprite2D" parent="."]
+position = Vector2(117, 87)
+sprite_frames = SubResource("SpriteFrames_ximga")
+
+[node name="ClickCounter" type="Label" parent="."]
+offset_left = 114.0
+offset_top = 47.0
+offset_right = 124.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 5
+text = "50
+"
+autowrap_mode = 3
+
+[node name="Label" type="Label" parent="."]
+offset_left = 89.0
+offset_top = 22.0
+offset_right = 151.0
+offset_bottom = 38.0
+theme_override_font_sizes/font_size = 5
+text = "Spam click to tie their hair"
+autowrap_mode = 3
+
+[node name="OneSecondTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="TimerLabel" type="Label" parent="."]
+offset_right = 10.0
+offset_bottom = 8.0
+text = "10"
+label_settings = SubResource("LabelSettings_6a7ns")
+autowrap_mode = 3
+
+[connection signal="timeout" from="OneSecondTimer" to="." method="_on_one_second_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

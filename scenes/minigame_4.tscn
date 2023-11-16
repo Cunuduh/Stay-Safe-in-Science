@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://clmr1i3pn24du"]
+
+[ext_resource type="Script" path="res://scripts/minigame_4/minigame_4.gd" id="1_4n4qu"]
+[ext_resource type="Texture2D" uid="uid://b3rdjs2r8vi50" path="res://sprites/ammonia.png" id="1_73b8g"]
+[ext_resource type="Texture2D" uid="uid://cyb17eujyyaxu" path="res://sprites/bleach.png" id="2_mf0bt"]
+[ext_resource type="Script" path="res://scripts/minigame_3/draggable_sprite.gd" id="2_mnc2c"]
+[ext_resource type="FontFile" uid="uid://bvw5nemfgqfxq" path="res://CG pixel 4x5.ttf" id="5_2nvjr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qhl2g"]
+font = ExtResource("5_2nvjr")
+font_size = 5
+
+[node name="Minigame4" type="Node2D"]
+script = ExtResource("1_4n4qu")
+
+[node name="Ammonia" type="Sprite2D" parent="."]
+position = Vector2(64, 88)
+texture = ExtResource("1_73b8g")
+script = ExtResource("2_mnc2c")
+
+[node name="Area2D" type="Area2D" parent="Ammonia"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ammonia/Area2D"]
+polygon = PackedVector2Array(6.5, -10.5, 9.5, -10.5, 9.5, -9.5, 10.5, -9.5, 10.5, 6.5, 9.5, 6.5, 9.5, 8.5, 8.5, 8.5, 8.5, 9.5, 7.5, 9.5, 7.5, 10.5, 6.5, 10.5, 6.5, 11.5, -3.5, 11.5, -3.5, 10.5, -4.5, 10.5, -4.5, 9.5, -5.5, 9.5, -5.5, 8.5, -6.5, 8.5, -6.5, 6.5, -7.5, 6.5, -7.5, -4.5, -8.5, -4.5, -8.5, -5.5, -9.5, -5.5, -9.5, -6.5, -10.5, -6.5, -10.5, -9.5, -9.5, -9.5, -9.5, -10.5, -5.5, -10.5, -5.5, -11.5, 6.5, -11.5)
+
+[node name="Bleach" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(179, 87)
+texture = ExtResource("2_mf0bt")
+script = ExtResource("2_mnc2c")
+
+[node name="Area2D" type="Area2D" parent="Bleach"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bleach/Area2D"]
+polygon = PackedVector2Array(-7.5, -15.5, -6.5, -15.5, -6.5, -14.5, -5.5, -14.5, -5.5, -13.5, 1.5, -13.5, 1.5, -14.5, 2.5, -14.5, 2.5, -15.5, 3.5, -15.5, 3.5, -16.5, 10.5, -16.5, 10.5, -15.5, 11.5, -15.5, 11.5, -14.5, 12.5, -14.5, 12.5, -13.5, 13.5, -13.5, 13.5, 11.5, 12.5, 11.5, 12.5, 12.5, 11.5, 12.5, 11.5, 13.5, 10.5, 13.5, 10.5, 14.5, 9.5, 14.5, 9.5, 15.5, 7.5, 15.5, 7.5, 16.5, -7.5, 16.5, -7.5, 15.5, -9.5, 15.5, -9.5, 14.5, -10.5, 14.5, -10.5, 13.5, -11.5, 13.5, -11.5, 12.5, -12.5, 12.5, -12.5, 11.5, -13.5, 11.5, -13.5, -14.5, -12.5, -14.5, -12.5, -15.5, -11.5, -15.5, -11.5, -16.5, -7.5, -16.5)
+
+[node name="OneSecondTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="TimerLabel" type="Label" parent="."]
+offset_right = 10.0
+offset_bottom = 8.0
+text = "10"
+label_settings = SubResource("LabelSettings_qhl2g")
+autowrap_mode = 3
+
+[node name="Label" type="Label" parent="."]
+offset_left = 79.0
+offset_top = 44.0
+offset_right = 162.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 5
+text = "Drag the chemicals together"
+autowrap_mode = 3
+
+[connection signal="area_entered" from="Ammonia/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="mouse_entered" from="Ammonia/Area2D" to="Ammonia" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Ammonia/Area2D" to="Ammonia" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Bleach/Area2D" to="Bleach" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Bleach/Area2D" to="Bleach" method="_on_mouse_exited"]
+[connection signal="timeout" from="OneSecondTimer" to="." method="_on_one_second_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,111 @@
+[gd_scene load_steps=7 format=3 uid="uid://cpkghruccq3rh"]
+
+[ext_resource type="Script" path="res://scripts/main/main.gd" id="1_dg7ge"]
+[ext_resource type="StyleBox" uid="uid://18wvken6xidf" path="res://resources/button_stylebox.tres" id="1_ol3mp"]
+[ext_resource type="Texture2D" uid="uid://dw27xfomdglka" path="res://sprites/sulfur.png" id="2_5i2oy"]
+[ext_resource type="Texture2D" uid="uid://bsg331wlub0lq" path="res://sprites/iron.png" id="3_iwfli"]
+[ext_resource type="Texture2D" uid="uid://b0kuvv080avgo" path="res://sprites/indium.png" id="4_skid4"]
+[ext_resource type="Texture2D" uid="uid://b28qgnt8fbkv7" path="res://sprites/scandium.png" id="5_ufsn2"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dg7ge")
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -6.5
+offset_right = 19.5
+offset_bottom = 6.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 5
+theme_override_styles/normal = ExtResource("1_ol3mp")
+theme_override_styles/hover = ExtResource("1_ol3mp")
+theme_override_styles/pressed = ExtResource("1_ol3mp")
+theme_override_styles/disabled = ExtResource("1_ol3mp")
+theme_override_styles/focus = ExtResource("1_ol3mp")
+text = "Start"
+
+[node name="Title" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.115
+anchor_right = 0.5
+anchor_bottom = 0.115
+offset_left = -120.0
+offset_top = -20.7
+offset_right = -120.0
+offset_bottom = -20.7
+
+[node name="Sulfur" type="TextureRect" parent="Title"]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 9.0
+offset_right = 91.0
+offset_bottom = 34.0
+texture = ExtResource("2_5i2oy")
+
+[node name="Tay" type="Label" parent="Title/Sulfur"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 7.0
+offset_right = 53.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 10
+text = "tay"
+
+[node name="Iron" type="TextureRect" parent="Title"]
+layout_mode = 0
+offset_left = 143.0
+offset_top = 9.0
+offset_right = 169.0
+offset_bottom = 34.0
+texture = ExtResource("3_iwfli")
+
+[node name="Sa" type="Label" parent="Title/Iron"]
+layout_mode = 0
+offset_left = -19.0
+offset_top = 7.0
+offset_right = 21.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 10
+text = "Sa"
+
+[node name="Indium" type="TextureRect" parent="Title"]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 36.0
+offset_right = 91.0
+offset_bottom = 61.0
+texture = ExtResource("4_skid4")
+
+[node name="Scandium" type="TextureRect" parent="Title"]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 36.0
+offset_right = 125.0
+offset_bottom = 61.0
+texture = ExtResource("5_ufsn2")
+
+[node name="Label" type="Label" parent="Title/Scandium"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 7.0
+offset_right = 71.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 10
+text = "ience"
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]

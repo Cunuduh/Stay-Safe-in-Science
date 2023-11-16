@@ -1,0 +1,56 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Stay Safe in Science"
+run/main_scene="res://scenes/main.tscn"
+config/features=PackedStringArray("4.1", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+Autoload="*res://scripts/autoload.gd"
+Audio="*res://scenes/audio.tscn"
+
+[display]
+
+window/size/viewport_width=240
+window/size/viewport_height=180
+window/size/mode=2
+window/size/window_width_override=480
+window/size/window_height_override=360
+window/stretch/mode="viewport"
+
+[dotnet]
+
+project/assembly_name="Stay Safe in Science"
+
+[gui]
+
+theme/custom_font="res://CG pixel 4x5.ttf"
+theme/default_font_antialiasing=0
+theme/default_font_hinting=0
+theme/default_font_subpixel_positioning=0
+
+[input]
+
+left_mouse_button={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(255, 18),"global_position":Vector2(259, 61),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true

@@ -1,0 +1,112 @@
+[gd_scene load_steps=9 format=3 uid="uid://crov00h2qpbv2"]
+
+[ext_resource type="Script" path="res://scripts/minigame_1/minigame_1.gd" id="1_2rpa8"]
+[ext_resource type="Script" path="res://scripts/minigame_1/draggable_object.gd" id="2_mcsfh"]
+[ext_resource type="Texture2D" uid="uid://gh4augech3ew" path="res://sprites/beaker.png" id="3_uhvr3"]
+[ext_resource type="Texture2D" uid="uid://c8e7tvbyd5abd" path="res://sprites/erlenmeyer_flask.png" id="4_gw1q2"]
+[ext_resource type="Texture2D" uid="uid://bh7dcgxvdje5g" path="res://sprites/test_tube.png" id="5_7h3pj"]
+[ext_resource type="Texture2D" uid="uid://j28tmurlfteq" path="res://sprites/table.png" id="6_opbqi"]
+[ext_resource type="FontFile" uid="uid://bvw5nemfgqfxq" path="res://CG pixel 4x5.ttf" id="7_45hve"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2i02r"]
+font = ExtResource("7_45hve")
+font_size = 5
+
+[node name="Minigame1" type="Node2D"]
+script = ExtResource("1_2rpa8")
+
+[node name="Beaker" type="RigidBody2D" parent="." groups=["RigidBody"]]
+position = Vector2(220, -334)
+input_pickable = true
+mass = 0.3
+gravity_scale = 0.07
+continuous_cd = 2
+freeze_mode = 1
+script = ExtResource("2_mcsfh")
+
+[node name="Sprite2D" type="Sprite2D" parent="Beaker"]
+texture_filter = 1
+texture_repeat = 1
+texture = ExtResource("3_uhvr3")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Beaker"]
+polygon = PackedVector2Array(6, -7.5, 7, -7.5, 7, -6.5, 8, -6.5, 8, 5.5, 7, 5.5, 7, 6.5, 6, 6.5, 6, 7.5, 5, 7.5, 5, 8.5, -3, 8.5, -3, 7.5, -4, 7.5, -4, 6.5, -5, 6.5, -5, 5.5, -6, 5.5, -6, -2.5, -7, -2.5, -7, -3.5, -8, -3.5, -8, -8.5, 6, -8.5)
+
+[node name="Flask" type="RigidBody2D" parent="." groups=["RigidBody"]]
+position = Vector2(229, -622)
+input_pickable = true
+mass = 0.3
+gravity_scale = 0.07
+continuous_cd = 2
+freeze_mode = 1
+script = ExtResource("2_mcsfh")
+
+[node name="Sprite2D" type="Sprite2D" parent="Flask"]
+texture_filter = 1
+texture_repeat = 1
+texture = ExtResource("4_gw1q2")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Flask"]
+polygon = PackedVector2Array(3, -7.5, 4, -7.5, 4, -1.5, 5, -1.5, 5, 0.5, 6, 0.5, 6, 1.5, 7, 1.5, 7, 6.5, 6, 6.5, 6, 7.5, 5, 7.5, 5, 8.5, -5, 8.5, -5, 7.5, -6, 7.5, -6, 6.5, -7, 6.5, -7, 1.5, -6, 1.5, -6, 0.5, -5, 0.5, -5, -1.5, -4, -1.5, -4, -7.5, -3, -7.5, -3, -8.5, 3, -8.5)
+
+[node name="TestTube" type="RigidBody2D" parent="." groups=["RigidBody"]]
+position = Vector2(192, -70)
+input_pickable = true
+mass = 0.3
+gravity_scale = 0.07
+continuous_cd = 2
+freeze_mode = 1
+script = ExtResource("2_mcsfh")
+
+[node name="Sprite2D" type="Sprite2D" parent="TestTube"]
+texture_filter = 1
+texture_repeat = 1
+texture = ExtResource("5_7h3pj")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TestTube"]
+polygon = PackedVector2Array(3, -7.5, 4, -7.5, 4, -5.5, 3, -5.5, 3, 6.5, 2, 6.5, 2, 7.5, 1, 7.5, 1, 8.5, -1, 8.5, -1, 7.5, -2, 7.5, -2, 6.5, -3, 6.5, -3, -5.5, -4, -5.5, -4, -7.5, -3, -7.5, -3, -8.5, 3, -8.5)
+
+[node name="Table" type="StaticBody2D" parent="."]
+position = Vector2(80, 164)
+
+[node name="Sprite2D" type="Sprite2D" parent="Table"]
+texture = ExtResource("6_opbqi")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Table"]
+polygon = PackedVector2Array(-80, -8, 80, -8, 80, 8, -112, 8, -112, -512, -80, -512)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="OneSecondTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 35.0
+offset_top = 68.0
+offset_right = 138.0
+offset_bottom = 100.0
+text = "Catch all the glassware before they fall and break on the floor"
+label_settings = SubResource("LabelSettings_2i02r")
+autowrap_mode = 3
+
+[node name="TimerLabel" type="Label" parent="."]
+offset_right = 10.0
+offset_bottom = 8.0
+text = "10"
+label_settings = SubResource("LabelSettings_2i02r")
+autowrap_mode = 3
+
+[connection signal="mouse_entered" from="Beaker" to="Beaker" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Beaker" to="Beaker" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Flask" to="Flask" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Flask" to="Flask" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="TestTube" to="TestTube" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="TestTube" to="TestTube" method="_on_mouse_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="OneSecondTimer" to="." method="_on_one_second_timer_timeout"]
